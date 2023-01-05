@@ -7,4 +7,5 @@ app.use(express.json());
 
 app.use(router);
 
+
 app.listen(3333, () => console.log('Servidor Ativo!!!'))
