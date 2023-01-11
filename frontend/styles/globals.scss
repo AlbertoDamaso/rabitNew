@@ -6,16 +6,19 @@
 }
 
 :root{
+  --primary-minus: #eefb91;
+  --primary: #ccde3f;
+  --primary-plus: #899a09;
 
-  --white: #fff;
-  --black: #000;
+  --secondary-minus: #238f6c;
+  --secondary: #006442;
+  --secondary-plus: #002F20;
 
-  --dark-900: #101026;
-  --dark-700: #1d1d2e;
+  --light: #f1f1f1;
+  --dark: #222222;
 
-  --gray-100: #8a8a8a;
-  --green-900: #3fffa3;
-  --red-900: #ff3f4b;
+  --success: #3fffa3;
+  --danger: #ff3f4b;
 }
 
 button{
@@ -28,7 +31,7 @@ a{
 }
 
 body{
-  background: var(--dark-700);
+  background: var(--secondary);
 }
 
 body, input, textarea, select, button{
