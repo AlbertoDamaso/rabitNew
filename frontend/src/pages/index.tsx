@@ -1,11 +1,16 @@
-
+import Head from "next/head";
 
 export default function Home() {
   return (
     <>
-    <h1>
-      RabitNew
-    </h1>
+    <Head>
+      <title>RabitNew - Faça seu login</title>
+    </Head>
+    <div>
+      <h1>
+        Rabit New
+      </h1>
+    </div>
     </>
   )
 }
