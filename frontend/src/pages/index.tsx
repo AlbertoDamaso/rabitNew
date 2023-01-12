@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import Image from "next/image";
 import styles from "../../styles/home.module.scss"
 
@@ -21,7 +22,7 @@ export default function Home() {
             type="text"
           />
           <Input
-            placeholder="Password"
+            placeholder="Senha"
             type="password"
           />
 
@@ -37,9 +38,7 @@ export default function Home() {
           <span>
             Não possui uma conta?
           </span>
-          <a>
-            Crie uma conta
-          </a>
+          <Link href="/signup">Crie uma contas</Link>
         </div>
       </div>
     </div>

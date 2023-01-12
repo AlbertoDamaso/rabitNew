@@ -16,6 +16,10 @@
     flex-direction: column;
     padding: 2rem 1.5rem;
 
+    h1{
+        color: var(--light);
+        padding-bottom: 1rem;
+    }
     form{
         width: 90%;
         display: flex;
@@ -31,10 +35,11 @@
 .text{
     margin-top: 1rem;
     color: var(--dark);
-
+    align-self: center;
     a{
         margin-left: 5px;
         color: var(--primary-minus);
+        text-decoration: underline;
     }
 }
 
