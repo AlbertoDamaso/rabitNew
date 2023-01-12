@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import styles from "../../../styles/home.module.scss"
+import styles from "../../styles/home.module.scss"
 
-import logoImg from "../../../public/logo.svg"
+import logoImg from "../../public/logo.svg"
 import { Input } from "../../components/ui/Input";
 import { Button } from "../../components/ui/Button";
 

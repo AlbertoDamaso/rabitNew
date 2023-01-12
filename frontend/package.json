@@ -6,29 +6,22 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "format": "prettier --write \"src/**/*.{js,jsx}\""
+    "lint": "next lint"
   },
   "dependencies": {
     "@next/font": "13.1.1",
     "@types/react-dom": "18.0.10",
-    "fresh": "^0.5.2",
-    "icons": "^1.0.0",
+    "eslint": "8.31.0",
+    "eslint-config-next": "13.1.1",
     "next": "13.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
-    "react-refresh": "^0.14.0",
-    "sass": "^1.57.1",
-    "typescript": "4.9.4"
+    "sass": "^1.57.1"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.26",
-    "eslint-plugin-import": "^2.27.4",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-react": "^7.32.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^2.8.2"
+    "typescript": "^4.9.4"
   }
 }
