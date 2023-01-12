@@ -12,7 +12,7 @@ export default function Home() {
     <Head>
       <title>RabitNew - Faça seu login</title>
     </Head>
-    <div>
+    <div className={styles.containerCenter}>
       <Image src={logoImg} alt="Logo Rabit New"/>
       <div className={styles.login}>
         <form>
@@ -32,6 +32,15 @@ export default function Home() {
             Entrar
           </Button> 
         </form>
+
+        <div className={styles.text}>
+          <span>
+            Não possui uma conta?
+          </span>
+          <a>
+            Crie uma conta
+          </a>
+        </div>
       </div>
     </div>
     </>
