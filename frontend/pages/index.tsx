@@ -8,16 +8,24 @@ import logoImg from "../public/logo.svg"
 import { Input } from "../components/ui/Input";
 import { Button } from "../components/ui/Button";
 import { AuthContext } from "../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 export default function Home() {
 
   const { signIn } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, serLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   async function handleLogin(event: FormEvent) {
     event.preventDefault();
+
+    if(email === '' || password === ''){
+      toast.warning("Preencha todos os campos.")
+      return;
+    }
+
+    setLoading(true);
 
     let data={
       email,
@@ -25,6 +33,8 @@ export default function Home() {
     }
 
     await signIn(data)
+
+    setLoading(false);
   }
 
   return (
@@ -51,7 +61,7 @@ export default function Home() {
 
           <Button
             type="submit"
-            loading={false}
+            loading={loading}
           >
             Entrar
           </Button> 
