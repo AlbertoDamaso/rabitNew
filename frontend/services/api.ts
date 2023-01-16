@@ -1,6 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { parseCookies } from 'nookies';
 import { AuthTokenError } from './errors/AuthTokenError';
+import { signOut } from '../contexts/AuthContext';
 
 export function setupAPIClient(ctx = undefined){
     let cookies = parseCookies(ctx);
@@ -19,6 +20,7 @@ export function setupAPIClient(ctx = undefined){
             // Qualquer erro 401(não autorizao) devemos deslogar o usuário.
             if(typeof window !== undefined){
                 // Chamar a função para deslogar o usuário.
+                signOut();
             }else{
                 return Promise.reject(new AuthTokenError())
             }
