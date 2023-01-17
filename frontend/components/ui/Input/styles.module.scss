@@ -3,11 +3,11 @@
     height: 40px;
     border: 0;
     border-radius: 0.5rem;
-    background-color: var(--secondary-minus);
-    color: var(--dark);
+    background-color: var(--secondary);
+    color: var(--primary-minus);
     padding: 1rem;
 }
 
 .input::placeholder{
-    color: var(--primary-minus);
+    color: var(--secondary-minus);
 }

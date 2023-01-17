@@ -1,5 +1,6 @@
 .button{
-    max-width: 600px;
+    max-width: 720px;
+    height: 40px;
     background-color: var(--primary);
     border: 0;
     padding: 0.4rem;
@@ -20,6 +21,7 @@
 
 .buttonText{
     color: var(--secondary);
+    font-weight: bold;
 }
 
 @keyframes animate{

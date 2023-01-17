@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: var(--secondary);
+    background-color: var(--secondary-plus);
   }
   
   .login{
@@ -34,7 +34,7 @@
   
   .text{
     margin-top: 1rem;
-    color: var(--dark);
+    color: var(--secondary-minus);
     align-self: center;
     a{
         margin-left: 5px;
