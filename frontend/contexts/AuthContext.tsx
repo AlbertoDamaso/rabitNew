@@ -1,6 +1,6 @@
 import React from "react";
-import { createContext, ReactNode, useState } from "react";
-import { destroyCookie, setCookie } from "nookies";
+import { createContext, ReactNode, useState, useEffect } from "react";
+import { destroyCookie, parseCookies, setCookie } from "nookies";
 import  Router  from "next/router";
 import { api } from "../services/apiClient";
 import { toast } from "react-toastify";
@@ -52,8 +52,28 @@ export function AuthProvider({ children }: AuthProviderProps){
         name: '',
         email: '',
     });
-
     const isAuthenticated = !!user;
+
+    useEffect(() => {
+        //Tentar pegar algo no cookie
+        const { '@nextauth.token': token } = parseCookies();
+
+        if(token){
+            api.get('/me').then(response => {
+                const { id, name, email } = response.data;
+
+                setUser({
+                    id,
+                    name,
+                    email
+                })
+            })
+            .catch(() =>{
+                // Se deu erro deslogamos o user.
+                signOut();
+            })
+        }
+    }, [])
 
     async function signIn({ email, password }: SignInProps){
         try{
@@ -86,7 +106,7 @@ export function AuthProvider({ children }: AuthProviderProps){
             Router.push('/dashboard')
 
         }catch(err){
-            toast.error("Erro ao acessar!")
+            toast.error("Email ou senha incorretos")
             console.log("ERRO AO ACESSAR ", err)
         }
     }

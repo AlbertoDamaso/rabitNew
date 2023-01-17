@@ -1,12 +1,17 @@
+import Head from "next/head"
+import { Header } from "../../components/Header"
 import { canSSRAuth } from "../../utils/canSSRAuth"
 
 export default function Dashboard(){
     return(
+        <>
+        <Head>
+            <title> RabitNew - Painel </title>
+        </Head>
         <div>
-            <h1>
-                Bem vindo ao painel
-            </h1>
+            <Header/>
         </div>
+        </>
     )
 }
 
