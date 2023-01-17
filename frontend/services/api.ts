@@ -2,8 +2,10 @@ import axios, { AxiosError } from 'axios';
 import { parseCookies } from 'nookies';
 import { AuthTokenError } from './errors/AuthTokenError';
 import { signOut } from '../contexts/AuthContext';
+import { NextPageContext } from 'next';
 
-export function setupAPIClient(ctx = undefined){
+// estava assim: setupAPIClient(ctx=undefined)
+export function setupAPIClient(ctx: Pick<NextPageContext, "req"> | { req: Request; } | null | undefined){
     let cookies = parseCookies(ctx);
 
     const api = axios.create({
