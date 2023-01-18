@@ -1,0 +1,57 @@
+.container{
+    width: 620px;
+    background-color: var(--secondary-plus);
+    color: var(--light);
+
+    h1{
+        margin: 1rem 0;
+    }
+
+    .table{
+        color: var(--primary);
+        font-size: 1.5rem;
+    }
+
+    span{
+        font-size: 1.1rem;
+    }
+}
+
+
+.containerItem{
+    display: flex;
+    flex-direction: column;
+    margin: 1.1rem 0;
+
+  
+    strong{
+        color: var(--primary);
+        font-size: 1.3rem;
+    }
+}
+
+.description{
+    margin-top: 0.5rem;
+    word-break: break-all;
+}
+
+.buttonOrder{
+    margin-top: 1.5rem;
+    background-color: var(--secondary);
+    border:0;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: var(--primary)
+}
+
+@media screen and (max-width: 700px) {
+    .container{
+        width: 430px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .container{
+        width: 330px;
+    }
+}
