@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
-const AppRoutes: React.FC = () => {
+export function AppRoutes(){
   return(
     <Stack.Navigator>
         <Stack.Screen name="Dashboard" component={Dashboard}/>
@@ -12,4 +12,3 @@ const AppRoutes: React.FC = () => {
   )
 }
 
-export default AppRoutes;
