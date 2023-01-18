@@ -12,6 +12,7 @@ import { Button } from '../../components/Button';
 // import { AuthContext } from '../../contexts/auth';
 
 import { styles } from './styles';
+import { Background } from '../../components/Background';
 
 export function SignIn() {
   const navigation = useNavigation();
@@ -28,42 +29,44 @@ export function SignIn() {
   }
 
   return (
-    <View style = {styles.container}>
-      <Image
-        source={require('../../assets/icon.png')}
-        resizeMode="stretch"
-      />      
+    <Background>
+      <View style = {styles.container}>
+        <Image
+          source={require('../../assets/icon.png')}
+          resizeMode="stretch"
+        />      
 
-      <View style={styles.areaInput}>
+        <View style={styles.areaInput}>
 
-        <Input
-          placeholder="E-mail"
-          returnKeyType="next"
-          onSubmitEditing={ () => Keyboard.dismiss()}
-          autoCorrect={false}
-          autoCapitalize="none"
-          value={email}
-          // onChangeText={ (text) => setEmail(text) }
-        />
-        <Input
-          placeholder="Senha"
-          returnKeyType="next"
-          isSecure={true}
-          onSubmitEditing={ () => Keyboard.dismiss()}
-          autoCapitalize="none"
-          value={password}
-          // onChangeText={ (text) => setPassword(text) }
-          secureTextEntry={true}
-        />
+          <Input
+            placeholder="E-mail"
+            returnKeyType="next"
+            onSubmitEditing={ () => Keyboard.dismiss()}
+            autoCorrect={false}
+            autoCapitalize="none"
+            value={email}
+            // onChangeText={ (text) => setEmail(text) }
+          />
+          <Input
+            placeholder="Senha"
+            returnKeyType="next"
+            isSecure={true}
+            onSubmitEditing={ () => Keyboard.dismiss()}
+            autoCapitalize="none"
+            value={password}
+            // onChangeText={ (text) => setPassword(text) }
+            secureTextEntry={true}
+          />
+        </View>
+
+        <View style={styles.areaBtn}>
+          <Button
+            // onPress={(handleLogin)}
+            title={"Entrar"}
+            //activeOpacity={0.7}
+          />
+        </View>
       </View>
-
-      <View style={styles.areaBtn}>
-        <Button
-          // onPress={(handleLogin)}
-          title={"Entrar"}
-          //activeOpacity={0.7}
-        />
-      </View>
-    </View>
+    </Background>
   );
 }
