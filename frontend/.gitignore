@@ -7,6 +7,7 @@
 
 # testing
 /coverage
+ngrok.exe
 
 # next.js
 /.next/
