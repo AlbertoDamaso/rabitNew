@@ -9,7 +9,7 @@ import { styles } from './styles';
 export function Input({...rest}){
   return(
     <TextInput
-      placeholderTextColor="#CCDE3F"
+      placeholderTextColor="#238F6C"
       style={styles.input}
       {...rest}
     />

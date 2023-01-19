@@ -7,8 +7,10 @@ export const theme = {
         secundary: '#006442',
         secundaryMais: '#002F20',
         secundaryMenos: '#238F6C',
-        secundary85: '#22775B',
-        secundary75: '#39846B',
+        secundary85: '#1F473A',
+        secundary75: '#34574C',
+        // secundary85: '#22775B',
+        // secundary75: '#39846B',
 
         dark: '#222222',
         light: '#f1f1f1',
