@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import {
   TouchableOpacity,
   Text,
@@ -10,15 +10,18 @@ import { styles } from './styles';
 
 interface ButtonProps {
     title: string,
+    onPress?: any,
+    rest?: any, 
 }
 
-export function Button({ title, ...rest}:ButtonProps) {
+export function Button({ title, onPress, ...rest}:ButtonProps) {
 
 //   const { loadingAuth } = useContext(AuthContext);
 
   return (
     <TouchableOpacity
       style={styles.click}
+      onPress={onPress}
       {...rest}
     >
       {/* {
