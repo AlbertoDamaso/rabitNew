@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import {useState, ChangeEvent, FormEvent} from "react";
 import Head from "next/head";
-import { FiPlus, FiUpload } from "react-icons/fi";
+import { FiPlus } from "react-icons/fi";
 import { Header } from "../../components/Header";
 import { Button } from "../../components/ui/Button";
 import { Input } from "../../components/ui/Input";

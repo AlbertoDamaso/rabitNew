@@ -1,4 +1,4 @@
-import '../styles/globals.scss'
+import '../global/styles/globals.scss'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import type { AppProps } from 'next/app'

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import logoImg from "../../public/logoHeader.svg";
+import logoImg from "../../../public/logoHeader.svg";
 import styles from "./styles.module.scss";
 import { FiLogOut } from "react-icons/fi";
 import { AuthContext } from "../../contexts/AuthContext";
