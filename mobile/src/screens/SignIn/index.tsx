@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import {
   View,
-  Text,
   Keyboard,
   Image
 } from 'react-native';
@@ -18,14 +17,13 @@ export function SignIn() {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { user } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
 
-  function handleLogin(){
+  async function handleLogin(){
     if(email === '' || password === ''){
       return;
     }
-    // signIn(email, password);
-    console.log('Email digitado' + email)
+    await signIn({ email, password });
   }
 
   function handleSignUp(){
@@ -66,7 +64,7 @@ export function SignIn() {
           <Button
             onPress={handleLogin}
             title={"Entrar"}
-            //activeOpacity={0.7}
+            activeOpacity={0.7}
           />
         </View>
       </View>

@@ -1,16 +1,27 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useContext } from 'react';
+import {
+  View,
+  Text
+} from 'react-native';
+import { Button } from '../../components/Button';
+import { AuthContext } from '../../contexts/AuthContext';
 
-// import { Container } from './styles';
+import { styles } from './styles'
 
-const Dashboard: React.FC = () => {
-  return(
-    <View>
-        <Text>
-            Painel
-        </Text>
+
+export function Dashboard() {
+  
+  const { signOut } = useContext(AuthContext);
+
+  return (
+    <View style={styles.container}>
+      <Text>
+        Painel
+      </Text>
+      <Button
+        title='Sair'
+        onPress={signOut}
+      />
     </View>
-  )
+  );
 }
-
-export default Dashboard;
