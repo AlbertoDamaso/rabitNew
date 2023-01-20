@@ -11,10 +11,8 @@ import { BtnCount } from '../../components/BtnCount';
 import { BtnPicker } from '../../components/BtnPicker';
 import { BtnTrash } from '../../components/BtnTrash';
 import { Button } from '../../components/Button';
-import { Input } from '../../components/Input';
+import { ListProduct } from '../../components/ListProduct';
 import { ModalPicker } from '../../components/ModalPicker';
-import { Picker } from '../../components/Picker';
-import { theme } from '../../global/styles/theme';
 import { api } from '../../services/api';
 import { styles } from './styles';
 
@@ -25,14 +23,22 @@ type RouteDetailParams = {
   }
 }
 
-export type CategoryProps = {
+export type PickerProps = {
   id: string;
   name: string;
 }
 
-export type ProductProps = {
+type ItemProps = {
   id: string;
+  product_id: string;
   name: string;
+  amount: number;
+}
+
+type AlertProps = {
+  text: string;
+  onPress: () => void;
+  style: string;
 }
 
 type OrderRouteProps = RouteProp<RouteDetailParams, 'Order'>;
@@ -44,13 +50,14 @@ export function Order() {
   const navigation = useNavigation();
 
   const [count, setCount] = useState(1);
+  const [item, setItem] = useState<ItemProps[]>([]);
 
-  const [category, setCategory] = useState<CategoryProps [] | []>([]);
-  const [categorySelected, setCategorySelected] = useState<CategoryProps | undefined>();
+  const [category, setCategory] = useState<PickerProps [] | []>([]);
+  const [categorySelected, setCategorySelected] = useState<PickerProps | undefined>();
   const [modalCategoryView, setModalCategoryView] = useState(false);
 
-  const [product, setProduct] = useState<ProductProps [] | []>([]);
-  const [productSelected, setProductSelected] = useState<ProductProps | undefined>();
+  const [product, setProduct] = useState<PickerProps [] | []>([]);
+  const [productSelected, setProductSelected] = useState<PickerProps | undefined>();
   const [modalProductView, setModalProductView] = useState(false);
 
   useEffect(() => {
@@ -79,6 +86,14 @@ export function Order() {
     loadProduct();
   }, [categorySelected])
 
+  function handleChangeCategory(item: PickerProps){
+    setCategorySelected(item);
+  }
+
+  function handleChangeProduct(item: PickerProps){
+    setProductSelected(item);
+  }
+
   async function handleCloseOrder() {
     try{
       await api.delete('/order', {
@@ -105,15 +120,24 @@ export function Order() {
   }
 
   async function handleOrder() {
-    alert("CLICOU!")
+    const respose = await api.post('/order/item', {
+      order_id: route.params?.order_id,
+      product_id: productSelected?.id,
+      amount: count
+    })
+
+    let data = {
+      id: respose.data.id as string,
+      product_id: productSelected?.id as string,
+      name: productSelected?.name as string,
+      amount: count,
+    }
+
+    setItem(oldArray => [...oldArray, data])
   }
 
-  function handleChangeCategory(item: CategoryProps){
-    setCategorySelected(item);
-  }
-
-  function handleChangeProduct(item: CategoryProps){
-    setProductSelected(item);
+  async function handleFinishOrder() {    
+    alert("CLICOU FINISH!")
   }
 
   return (
@@ -123,13 +147,14 @@ export function Order() {
             <Text style={styles.title}>
               Mesa {route.params.number}
             </Text>
-            <BtnTrash
-              onPress={handleCloseOrder}
-            />
+            {item.length === 0 &&(
+              <BtnTrash
+                onPress={handleCloseOrder}
+              />
+            )}
           </View>  
           
-          {
-            category.length !== 0 
+          {category.length !== 0 
           ?
             <BtnPicker
               title={categorySelected?.name}
@@ -141,8 +166,7 @@ export function Order() {
             </Text>
           }
 
-          {
-            category.length !== 0 || product.length !== 0
+          {product.length !== 0
           ?
           <BtnPicker
             title={productSelected?.name}
@@ -150,7 +174,7 @@ export function Order() {
           />
           :
             <Text style={styles.text}>
-              Nenhuma categoria ou produto cadastrado...
+              Nenhum produto cadastrado...
             </Text>
           }
 
@@ -168,12 +192,22 @@ export function Order() {
             />
           </View>
 
-          <View>
-            <Text>
-              Comentario: colocar Lista de itens como o Botão para finalizar o pedido. 
-            </Text>
-          </View>
+          <Text style={styles.titleList}>
+            Lista de Produtos:
+          </Text>
 
+          <ListProduct
+            data={item}
+          />
+
+          {item.length !== 0 &&(
+            <Button
+              onPress={handleFinishOrder}
+              title={"Finalizar pedido"}
+              activeOpacity={0.7}
+            />
+          )}
+          
           <Modal
             transparent={true}
             visible={modalCategoryView}

@@ -6,17 +6,17 @@ import {
   TouchableOpacity as TO
 } from 'react-native';
 import { styles } from './styles';
-import { CategoryProps } from '../../screens/Order';
+import { PickerProps } from '../../screens/Order';
 
 interface ModalPickerProps{
-    options: CategoryProps[];
+    options: PickerProps[];
     handleCloseModal: () => void;
-    selectedItem: (item: CategoryProps) => void;
+    selectedItem: (item: PickerProps) => void;
 }
 
 export function ModalPicker({ options, handleCloseModal, selectedItem }: ModalPickerProps) {
 
-    function onPressItem(item: CategoryProps){
+    function onPressItem(item: PickerProps){
         selectedItem(item)
         handleCloseModal();
     }

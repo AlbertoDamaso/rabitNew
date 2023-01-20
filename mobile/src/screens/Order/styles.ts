@@ -25,6 +25,7 @@ export const styles = StyleSheet.create({
   text: {
     color: theme.colors.light,
     fontSize: 19,
+    marginBottom: 20,
   },
 
   areaBtn: {
@@ -32,7 +33,16 @@ export const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginTop: 5,
     marginHorizontal: 20,
+    marginBottom: 20,
     flexDirection: 'row',
+  },
+
+  titleList: {
+    marginVertical: 15,
+    alignSelf: 'center',
+    color: theme.colors.light,
+    fontSize: 25,
+    fontWeight: 'bold',
   },
 
 });

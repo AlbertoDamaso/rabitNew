@@ -14,7 +14,7 @@ export function BtnTrash({...rest}) {
     >
         <Feather
           name="trash-2"
-          size={28}
+          size={25}
           color={theme.colors.danger}
         />
     </TO>
