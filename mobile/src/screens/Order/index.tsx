@@ -1,6 +1,5 @@
-import { Feather } from '@expo/vector-icons';
-import { useRoute, RouteProp } from '@react-navigation/native';
-import React, { useState } from 'react';
+import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   View,
@@ -13,6 +12,7 @@ import { BtnTrash } from '../../components/BtnTrash';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { theme } from '../../global/styles/theme';
+import { api } from '../../services/api';
 import { styles } from './styles';
 
 type RouteDetailParams = {
@@ -22,22 +22,55 @@ type RouteDetailParams = {
   }
 }
 
+type CategoryProps = {
+  id: string;
+  name: string;
+}
+
 type OrderRouteProps = RouteProp<RouteDetailParams, 'Order'>;
 
 export function Order() {
 
   const route = useRoute<OrderRouteProps>();
-  const [category, setCategory] = useState('');
+  const navigation = useNavigation();
   const [count, setCount] = useState(1);
+  const [category, setCategory] = useState<CategoryProps [] | []>([]);
+  const [categorySelected, setCategorySelected] = useState<CategoryProps>();
+
+  useEffect(() => {
+    async function loadInfo() {
+      const respose = await api.get('category')
+
+      setCategory(respose.data);
+      setCategorySelected(respose.data[0])
+    }
+
+    loadInfo();
+  }, [])
+
+  async function handleCloseOrder() {
+    try{
+      await api.delete('/order', {
+        params:{
+          order_id: route.params?.order_id
+        }
+      })
+
+      navigation.goBack();
+
+    }catch(err){
+      console.log(err)
+    }
+  }
 
   //Contadores
-  function minus(){
-      if(count > 0){
-          setCount(count-1)
-      }
+  async function minus(){
+    if(count > 0){
+      setCount(count-1)
+    }
   }
-  function plus(){
-      setCount(count+1)
+  async function plus(){
+    setCount(count+1)
   }
 
   return (
@@ -47,12 +80,22 @@ export function Order() {
             <Text style={styles.title}>
               Mesa {route.params.number}
             </Text>
-            <BtnTrash/>
+            <BtnTrash
+              onPress={handleCloseOrder}
+            />
           </View>  
           
-          <BtnPicker
-            title={'Pizza'}
-          />
+          {
+            category.length !== 0 
+          ?
+            <BtnPicker
+              title={categorySelected?.name}
+            />
+          :
+            <Text style={styles.text}>
+              Nenhuma categoria cadastrada...
+            </Text>
+          }
 
           <BtnPicker
             title={'Pizza Calabresa'}

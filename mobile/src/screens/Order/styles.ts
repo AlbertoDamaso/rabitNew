@@ -22,6 +22,11 @@ export const styles = StyleSheet.create({
     marginRight: 10,
   },
   
+  text: {
+    color: theme.colors.light,
+    fontSize: 19,
+  },
+
   areaBtn: {
     width: '80%',
     alignSelf: 'flex-start',

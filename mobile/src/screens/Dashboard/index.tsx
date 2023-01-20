@@ -12,6 +12,7 @@ import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { AuthContext } from '../../contexts/AuthContext';
 import { StackPramsList } from '../../routes/app.routes';
+import { api } from '../../services/api';
 
 import { styles } from './styles'
 
@@ -25,8 +26,15 @@ export function Dashboard() {
       return
     }
 
-    // Precisa fazer a requisição e abrir a mesa e navegar pra proxima tela.
-    navigation.navigate('Order', {number: table, order_id: "b1eee28a-bb48-49be-a9eb-e34eb03cec01"})
+    const respose = await api.post('/order', {
+      table: Number(table)
+    })
+
+    // console.log(respose.data)
+
+    navigation.navigate('Order', {number: table, order_id: respose.data.id})
+
+    setTable('');
   }
 
   return (

@@ -8,7 +8,7 @@ import { theme } from '../../global/styles/theme';
 import { styles } from './styles';
 
 interface PickerParms {
-    title: string
+    title: string | undefined
 }
 export function BtnPicker({ title, ...rest }: PickerParms) {
   return (
