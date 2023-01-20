@@ -8,13 +8,15 @@ import { theme } from '../../global/styles/theme';
 import { styles } from './styles';
 
 interface PickerParms {
-    title: string | undefined
+  title: string | undefined;
+  onPress: () => void;
 }
-export function BtnPicker({ title, ...rest }: PickerParms) {
+export function BtnPicker({ onPress, title, ...rest }: PickerParms) {
   return (
     <TO
      style={styles.click}
      {...rest}
+     onPress={onPress}
     >
       <Text style={styles.text}>
           {title}

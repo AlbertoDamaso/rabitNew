@@ -9,8 +9,8 @@ import { styles } from './styles';
 import { theme } from '../../global/styles/theme';
 
 interface BtnCountProps {
-    minus: any,
-    plus: any,
+    minus: () => void;
+    plus: () => void;
     count: number,
 }
 

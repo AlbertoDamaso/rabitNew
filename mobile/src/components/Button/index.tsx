@@ -10,7 +10,7 @@ import { styles } from './styles';
 
 interface ButtonProps {
     title: string,
-    onPress?: any,
+    onPress: () => void;
     activeOpacity?: number,
     rest?: any, 
 }

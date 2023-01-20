@@ -4,26 +4,27 @@ import React from 'react';
 import {
   View
 } from 'react-native';
+import { onChange } from 'react-native-reanimated';
+import { CategoryProps } from '../../screens/Order';
 
 import { styles } from './styles';
 
-interface PickerParms{
-    onChange?: any; 
-    data?: any;
-    rest?: any;
+interface PickerProps{
+  selectedItem: (item: CategoryProps) => void;
 }
 
-export function Picker({ onChange, data, ...rest}: PickerParms) {
+export function Picker({ selectedItem, ...rest}: PickerProps) {
+  
+  function onChangeItem(item: CategoryProps){
+    selectedItem.length;
+  }
+
   return (
     <PickerIOS
      style={styles.picker}
-     selectedValue={data}
-     onValueChange={ (valor) => onChange(valor)}
+     selectedValue={selectedItem?.name}
+     onValueChange={() => onChangeItem}
     >
-        <PickerIOS.Item label='Selecione a categoria' value=''/>
-        <PickerIOS.Item label='Pizza' value='pizza'/>
-        <PickerIOS.Item label='Pizza de Calabresa' value='pizzaC'/>
-
     </PickerIOS>
   );
 }
