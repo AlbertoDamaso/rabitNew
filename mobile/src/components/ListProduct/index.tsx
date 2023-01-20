@@ -8,9 +8,10 @@ import { styles } from './styles';
 
 type FlatListProps = {
   data: any[] | null | undefined;
+  deleteItem: (item_id: string) => void;
 }
 
-export function ListProduct({ data, ...rest }: FlatListProps) {
+export function ListProduct({ data, deleteItem, ...rest }: FlatListProps) {
   return (
     <FlatList
       data={data}
@@ -18,7 +19,7 @@ export function ListProduct({ data, ...rest }: FlatListProps) {
       showsVerticalScrollIndicator={false}
       keyExtractor={ item => item.id}
       renderItem={({ item }) => (
-        <ItemProduct data={item}/> 
+        <ItemProduct data={item} deleteItem={deleteItem}/> 
       )}
       {...rest}
     />  

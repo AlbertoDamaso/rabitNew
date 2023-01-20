@@ -136,6 +136,22 @@ export function Order() {
     setItem(oldArray => [...oldArray, data])
   }
 
+  async function handleDeleteItem(item_id: string) {
+    await api.delete('/order/item', 
+    {
+      params:{
+        item_id: item_id,
+      }
+    })
+
+    // Após remover da api, removemos esse item da nossa lista de items
+    let removeItem = item.filter( item => {
+      return(item.id !== item_id)
+    })
+
+    setItem(removeItem)
+  }
+
   async function handleFinishOrder() {    
     alert("CLICOU FINISH!")
   }
@@ -198,6 +214,7 @@ export function Order() {
 
           <ListProduct
             data={item}
+            deleteItem={handleDeleteItem}
           />
 
           {item.length !== 0 &&(

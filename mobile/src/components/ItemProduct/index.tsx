@@ -17,15 +17,19 @@ export interface ItemProps {
     product_id: string;
     name: string;
     amount: string | number;
-  }
+  },
+  deleteItem: (item_id: string) => void;
 }
 
-export function ItemProduct({ data }: ItemProps){
+export function ItemProduct({ data, deleteItem }: ItemProps){
+
+  function handleDeleteItem(){
+    deleteItem(data.id)
+  }
 
   return (
     <TWF
-    //   onPress={()}
-    // onLongPress={ () => deleteItem(data)}
+    onLongPress={handleDeleteItem}
     >
       <View style={styles.container}>
         <Text style={styles.item}>
@@ -33,7 +37,9 @@ export function ItemProduct({ data }: ItemProps){
         </Text>
 
         <TO>
-          <BtnTrash/>
+          <BtnTrash
+            onPress={handleDeleteItem}
+          />
         </TO>
       </View>
     </TWF>    
