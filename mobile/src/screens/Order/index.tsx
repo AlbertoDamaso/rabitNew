@@ -163,14 +163,14 @@ export function Order() {
       "Finalizar Pedido",
       `Você deseja finalizar o pedido da mesa ${route.params.number}?`,
       [
-      {
-        text: 'Sim',
-        onPress: () => handleConfirmFinish(),
-      },
-      {
-        text: 'Não',
-        onPress: () => setShowAlert(false),
-      }
+        {
+          text: 'Não',
+          onPress: () => setShowAlert(false),
+        },
+        {
+          text: 'Sim',
+          onPress: () => handleConfirmFinish(),
+        }
       ]
     )
   }
