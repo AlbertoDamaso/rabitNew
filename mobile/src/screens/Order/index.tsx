@@ -1,10 +1,12 @@
 import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   View,
   Text,
   Modal,
+  Alert,
 } from 'react-native';
 import { Background } from '../../components/Background';
 import { BtnCount } from '../../components/BtnCount';
@@ -13,6 +15,7 @@ import { BtnTrash } from '../../components/BtnTrash';
 import { Button } from '../../components/Button';
 import { ListProduct } from '../../components/ListProduct';
 import { ModalPicker } from '../../components/ModalPicker';
+import { StackPramsList } from '../../routes/app.routes';
 import { api } from '../../services/api';
 import { styles } from './styles';
 
@@ -47,7 +50,7 @@ export function Order() {
 
   const route = useRoute<OrderRouteProps>();
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<StackPramsList>>();
 
   const [count, setCount] = useState(1);
   const [item, setItem] = useState<ItemProps[]>([]);
@@ -59,6 +62,8 @@ export function Order() {
   const [product, setProduct] = useState<PickerProps [] | []>([]);
   const [productSelected, setProductSelected] = useState<PickerProps | undefined>();
   const [modalProductView, setModalProductView] = useState(false);
+
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     async function loadCategory() {
@@ -133,7 +138,8 @@ export function Order() {
       amount: count,
     }
 
-    setItem(oldArray => [...oldArray, data])
+    setItem(oldArray => [...oldArray, data]);
+    setCount(1);
   }
 
   async function handleDeleteItem(item_id: string) {
@@ -153,7 +159,35 @@ export function Order() {
   }
 
   async function handleFinishOrder() {    
-    alert("CLICOU FINISH!")
+    Alert.alert(
+      "Finalizar Pedido",
+      `Você deseja finalizar o pedido da mesa ${route.params.number}?`,
+      [
+      {
+        text: 'Sim',
+        onPress: () => handleConfirmFinish(),
+      },
+      {
+        text: 'Não',
+        onPress: () => setShowAlert(false),
+      }
+      ]
+    )
+  }
+
+  async function handleConfirmFinish(){
+    try{
+      await api.put('/order', {
+        order_id: route.params?.order_id 
+      })
+
+      setShowAlert(false);
+
+      navigation.popToTop();
+
+    }catch(err){
+      console.log("ERRO AO FINALIZAR, tente mais tarde")
+    }
   }
 
   return (
@@ -208,14 +242,16 @@ export function Order() {
             />
           </View>
 
-          <Text style={styles.titleList}>
-            Lista de Produtos:
-          </Text>
+          <View style={styles.areaList}>
+            <Text style={styles.titleList}>
+              Lista de Produtos:
+            </Text>
 
-          <ListProduct
-            data={item}
-            deleteItem={handleDeleteItem}
-          />
+            <ListProduct
+              data={item}
+              deleteItem={handleDeleteItem}
+            />
+          </View>
 
           {item.length !== 0 &&(
             <Button
@@ -247,7 +283,7 @@ export function Order() {
               options={product}
               selectedItem={handleChangeProduct}
             />
-          </Modal>          
+          </Modal>                
 
         </SafeAreaView>
     </Background>

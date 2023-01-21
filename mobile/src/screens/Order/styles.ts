@@ -37,6 +37,14 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
   },
 
+  areaList: {
+    width: '100%',
+    height: '49%',
+    alignSelf: 'center',
+    alignItems: 'center',
+    marginBottom: 20
+  },
+
   titleList: {
     marginVertical: 15,
     alignSelf: 'center',
@@ -44,5 +52,13 @@ export const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
   },
+
+  alertContainer: {
+    backgroundColor: theme.colors.dark,
+  },
+
+  textAlert: {
+    color: theme.colors.dark,
+  }
 
 });
