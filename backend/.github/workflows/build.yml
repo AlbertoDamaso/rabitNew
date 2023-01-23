@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-      - name: Build web-app
+      - name: Build web-app 
         run: |
           npm ci
           npm run build
