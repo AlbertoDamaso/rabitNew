@@ -1,15 +1,14 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "package.json", "use": "@vercel/node" },
-    { "src": "vercel.json", "use": "@vercel/build-utils" }
-  ],
+  "builds": {
+     "src": "services/server.ts",
+     "use": "@vercel/node"
+  },
   "env": {
     "NODE_ENV": "production"
   },
-  "routes": [
-    { "src": "/(.*)", "dest": "ts-node-dev --transpile-only src/server.ts" },
-    { "src": "/prisma.yml", "headers": { "cache-control": "s-maxage=31536000, immutable" }, "dest": "prisma.yml" },
-    { "src": "/seed.js", "headers": { "cache-control": "s-maxage=31536000, immutable" }, "dest": "seed.js" }
-  ]
+  "routes": [{
+    "src": "/(.*)", 
+    "dest": "src/server.ts" 
+  }]
 }
