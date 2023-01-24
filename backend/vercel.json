@@ -8,6 +8,8 @@
     "NODE_ENV": "production"
   },
   "routes": [
-    { "src": "/.*", "dest": "ts-node-dev --transpile-only src/server.ts" }
+    { "src": "/(.*)", "dest": "ts-node-dev --transpile-only src/server.ts" },
+    { "src": "/prisma.yml", "headers": { "cache-control": "s-maxage=31536000, immutable" }, "dest": "prisma.yml" },
+    { "src": "/seed.js", "headers": { "cache-control": "s-maxage=31536000, immutable" }, "dest": "seed.js" }
   ]
 }
