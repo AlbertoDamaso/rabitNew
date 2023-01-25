@@ -1,15 +1,22 @@
 {
     "version": 2,
     "builds": [
-        {
-            "src": "./server.js",
-            "use": "@vercel/node"
+      {
+        "src": "*.ts",
+        "use": "@vercel/node-compiler",
+        "config": {
+          "typescript": {
+            "compilerOptions": {
+              "target": "es2016",
+              "module": "commonjs",
+              "lib": ["es2016", "dom"]
+            }
+          }
         }
+      }
     ],
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/"
-        }
+      { "src": "/.*", "dest": "server.js" }
     ]
-}
+  }
+  
