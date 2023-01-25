@@ -6,6 +6,7 @@ import { CreateProductController } from "./controllers/product/CreateProductCont
 import { AuthUserController } from "./controllers/user/AuthUserController";
 import { CreateUserController } from "./controllers/user/CreateUserController";
 import { DetailUserController } from "./controllers/user/DetailUserController";
+import { ListUserController } from "./controllers/user/ListUserController";
 import { isAuthenticated } from "./middlewares/isAuthenticated";
 
 import uploadConfig from "./config/multer";
@@ -26,6 +27,7 @@ const upload = multer(uploadConfig.upload("./tmp"));
 //ROTAS USER
 router.post('/users', new CreateUserController().handle)
 router.post('/session', new AuthUserController().handle)
+router.get('/', new ListUserController().handle)
 router.get('/me', isAuthenticated, new DetailUserController().handle)
 
 // ROTAS CATEGORY

@@ -1,3 +1,4 @@
 # ignore ALL files in ANY directory named node
 node_modules/
 .vercel
+.env
