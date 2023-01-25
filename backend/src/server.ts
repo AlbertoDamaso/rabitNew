@@ -32,4 +32,5 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
         message: 'Internal server error.'
     })
 })
-app.listen(3333, () => (`<h1>Servidor Ativo!</h1>`))
+
+app.listen(3333, () => console.log('Servidor Ativo!!!'))
