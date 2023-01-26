@@ -1,22 +1,27 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "*.ts",
-        "use": "@vercel/node-compiler",
-        "config": {
-          "typescript": {
-            "compilerOptions": {
-              "target": "es2016",
-              "module": "commonjs",
-              "lib": ["es2016", "dom"]
-            }
+  "version": 2,
+  "builds": [
+    {
+      "src": "*.ts",
+      "use": "@vercel/node-compiler",
+      "config": {
+        "typescript": {
+          "compilerOptions": {
+            "target": "es2016",
+            "module": "commonjs",
+            "lib": ["es2016", "dom"]
           }
         }
       }
-    ],
-    "routes": [
-      { "src": "/.*", "dest": "server.js" }
-    ]
-  }
+    }
+  ],
+  "routes": [
+    { "src": "/.*", "dest": "server.js" }
+  ],
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/404.js" }
+  ]
+      
+}
+  
   
