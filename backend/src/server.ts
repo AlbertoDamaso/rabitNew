@@ -3,8 +3,13 @@ import "express-async-errors";
 import cors from "cors";
 import path from "path";
 import { router } from "./routes";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
+
+const PORT = process.env.PORT || 3333
 
 app.use(express.json());
 
@@ -20,7 +25,7 @@ app.use(
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     if(err instanceof Error){
         //Se for uma instancia do tipo error
-        return res.status(400).json({
+        return res.status(404).json({
             error:err.message
         })
 
@@ -33,4 +38,4 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     })
 })
 
-app.listen(3333, () => console.log('Servidor Ativo!!!'))
+app.listen(PORT, () => console.log('Servidor Ativo!!!'))
